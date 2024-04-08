@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,12 +51,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+
+
 ROOT_URLCONF = 'rosas.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +71,34 @@ TEMPLATES = [
         },
     },
 ]
+JAZZMIN_SETTINGS = {
+    "site_title": "Rosas",
+    "site_brand": "Rosas",
+    "custom_css": "css/custom_jazzmin.css",
+    "custom_js": None,
+    "show_ui_builder": True,
+    "site_logo": "img/logo-borrar.png",
+    "login_logo": "img/logo-borrar.png",
+    "site_logo_classes": "img-circle",
+    "welcome_sign": "¡Bienvenidos!. Ingresa tus credeciales para comenzar.",
+    "copyright": "Cardoné Devs 🚀 Made with ❤️ ",
+    "search_model": ["auth.User", "auth.Group"], 
+    # "topmenu_links": [
+
+    # # Url that gets reversed (Permissions can be added)
+    # {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+
+    # # external url that opens in a new window (Permissions can be added)
+    # {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+
+    # # model admin to link to (Permissions checked against model)
+    # {"model": "auth.User"},
+
+    # # App with dropdown menu to all its models pages (Permissions checked against models)
+    # {"app": "books"},
+    # ],
+}
+
 
 WSGI_APPLICATION = 'rosas.wsgi.application'
 
@@ -108,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -121,6 +153,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
