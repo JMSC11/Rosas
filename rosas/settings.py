@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'fundaciones',
 ]
 
 MIDDLEWARE = [
@@ -76,11 +77,11 @@ WSGI_APPLICATION = 'rosas.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rosas_db',
-        'USER': 'admin-rosas',
-        'PASSWORD': 'admin-rosas-pw',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'JvKJvJOdjyKsQhGVKNTVGLBiDBKhxgvK',
+        'HOST': 'viaduct.proxy.rlwy.net',
+        'PORT': '52216',
     }
 }
 
