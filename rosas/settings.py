@@ -77,11 +77,12 @@ JAZZMIN_SETTINGS = {
     "custom_css": "css/custom_jazzmin.css",
     "custom_js": None,
     "show_ui_builder": True,
-    "site_logo": "img/logo-borrar.png",
-    "login_logo": "img/logo-borrar.png",
-    "site_logo_classes": "img-circle",
+    "site_logo": "img/LOGO4.png",
+    "login_logo": "img/texto-logo.png",
+    "site_icon": "img/LOGO3.png",
+    "site_logo_classes": "null",
     "welcome_sign": "¡Bienvenidos!. Ingresa tus credeciales para comenzar.",
-    "copyright": "Cardoné Devs 🚀 Made with ❤️ ",
+    "copyright": "Code Busters 🚀 Made with ❤️ ",
     "search_model": ["auth.User", "auth.Group"], 
     # "topmenu_links": [
 
@@ -99,6 +100,12 @@ JAZZMIN_SETTINGS = {
     # ],
 }
 
+JAZZMIN_UI_TWEAKS = {
+
+    "accent": "nav-header-text",
+    "sidebar": ".li.nav-item.p a.nav-link.i",
+
+}
 
 WSGI_APPLICATION = 'rosas.wsgi.application'
 

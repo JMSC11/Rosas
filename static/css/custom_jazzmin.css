@@ -5,25 +5,44 @@
     --color-melocoton: #E3B7AA;
     --color-azul-marino: #3F4B7F;
 }
-
-.login-box {
-    display: flex;
-    flex-direction: column; /* En dispositivos móviles, se apilan verticalmente */
-    justify-content: center; /* Centra el contenido verticalmente */
-    align-items: center; /* Centra el contenido horizontalmente */
-    height: 100vh; /* Usa el 100% del alto de la ventana del navegador */
-    width: 100vw; /* Usa el 100% del ancho de la ventana del navegador */
-    background-color: var(--color-melocoton);
+.jazzmin-login-page{
+    background-color: var(--color-crema);
 }
+
 
 .main-sidebar {
-    background-color: var(--color-azul-marino);
+    background-color: var(--color-turquesa);
 }
 
-.login-box img{
-    width: 200 px;
-    height: 200px;
+.nav-header-text {
+    color: var(--color-azul-marino)
 }
+li.nav-item a.nav-link i, li.nav-item a.nav-link p {
+    color: var(--color-crema);
+    font-weight: bold;
+}
+
+.brand-link .brand-image {
+    float: left;
+    margin-left: .8rem;
+    margin-right: .5rem;
+    margin-top: -3px;
+    max-height: 40px;
+    width: auto;
+}
+
+.elevation-3 {
+    box-shadow: none !important;
+}
+
+.card{
+    border-top-width: 5px;
+    border-top-color:var(--color-turquesa) ;
+    border-radius: 0.5px;
+    box-shadow: 10px 10px 10px 1px rgba(0, 0, 0, 0.2)
+    
+}
+
 
 
 
