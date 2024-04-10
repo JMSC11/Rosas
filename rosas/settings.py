@@ -104,6 +104,9 @@ JAZZMIN_UI_TWEAKS = {
 
     "accent": "nav-header-text",
     "sidebar": ".li.nav-item.p a.nav-link.i",
+    "sidebar_nav_flat_style": True,
+    "theme": "lux",
+    "sidebar": "sidebar-light-lightblue",
 
 }
 
