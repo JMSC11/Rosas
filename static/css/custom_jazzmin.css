@@ -9,7 +9,10 @@
     background-color: var(--color-crema);
 }
 
-
+.btn-primary {
+    color: #fff;
+    background-color: var(--color-turquesa);
+}
 .main-sidebar {
     background-color: var(--color-turquesa);
 }
