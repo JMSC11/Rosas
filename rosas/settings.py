@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic', 
     'fundaciones',
+    'Adolescentes',
 ]
 CSRF_TRUSTED_ORIGINS = ['https://rosas-production.up.railway.app']
 MIDDLEWARE = [
