@@ -5,6 +5,17 @@
     --color-melocoton: #E3B7AA;
     --color-azul-marino: #3F4B7F;
 }
+
+@font-face{
+    font-family: 'Marlide Display Variable';
+    src:  url(MarlideDisplay_Bold.woff) format('woff');
+    font-weight: bold;
+}
+.brand-text{
+    font-family: 'Marlide Display Variable';
+    font-size: 35px;
+    color: #BFE3DB ;
+}
 .jazzmin-login-page{
     background-color: var(--color-crema);
 }
@@ -29,11 +40,14 @@ li.nav-item a.nav-link i, li.nav-item a.nav-link p {
     float: left;
     margin-left: .8rem;
     margin-right: .5rem;
-    margin-top: -3px;
+    margin-top: 3px;
     max-height: 40px;
     width: auto;
 }
-
+.login-logo img {
+    max-width: 300px;
+    height: auto;
+}
 .elevation-3 {
     box-shadow: none !important;
 }
