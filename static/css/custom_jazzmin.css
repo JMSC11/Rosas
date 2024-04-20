@@ -25,6 +25,11 @@ li.nav-item a.nav-link i, li.nav-item a.nav-link p {
     font-weight: bold;
 }
 
+.login-logo img {
+    max-width: 300px;
+    height: auto;
+}
+
 .brand-link .brand-image {
     float: left;
     margin-left: .8rem;
@@ -45,7 +50,3 @@ li.nav-item a.nav-link i, li.nav-item a.nav-link p {
     box-shadow: 10px 10px 10px 1px rgba(0, 0, 0, 0.2)
     
 }
-
-
-
-
