@@ -1,5 +1,6 @@
 from django.db import models
 from fundaciones.models import Fundacion
+
 # Create your models here.
 class Adolescente(models.Model):
     apellido_paterno = models.CharField(max_length=100)
@@ -29,5 +30,8 @@ class Adolescente(models.Model):
     impedimento_continuar_estudios = models.TextField(blank=True)
     fundacion = models.ForeignKey(Fundacion, on_delete=models.CASCADE, related_name='adolescentes_inscritas')
 
+
     def __str__(self):
         return f'{self.nombres} {self.apellido_paterno} {self.apellido_materno}'
+    
+   

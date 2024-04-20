@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic', 
     'fundaciones',
     'Adolescentes',
+    'cursos',
 ]
 CSRF_TRUSTED_ORIGINS = ['https://rosas-production.up.railway.app']
 MIDDLEWARE = [
@@ -87,7 +88,7 @@ JAZZMIN_SETTINGS = {
     "site_logo_classes": "null",
     "welcome_sign": "¡Bienvenidos!. Ingresa tus credeciales para comenzar.",
     "copyright": "Code Busters 🚀 Made with ❤️ ",
-    "search_model": ["auth.User", "auth.Group"], 
+    "search_model": ["auth.User", "auth.Group", "cursos.Curso"], 
     # "topmenu_links": [
 
     # # Url that gets reversed (Permissions can be added)
