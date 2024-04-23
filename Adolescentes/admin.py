@@ -18,4 +18,10 @@ class AdolescentesAdmin(admin.ModelAdmin):
     list_filter = []
     filter_horizontal = []
 
+    def get_queryset(self, request):
+            queryset = super().get_queryset(request)
+            if not request.user.is_superuser:
+                queryset = queryset.filter(fundacion__gestor=request.user)
+            return queryset
+
 admin.site.register(Adolescente, AdolescentesAdmin)
