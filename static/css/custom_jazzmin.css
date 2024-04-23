@@ -4,8 +4,9 @@
     --color-crema: #EFEAE4;
     --color-melocoton: #E3B7AA;
     --color-azul-marino: #3F4B7F;
+    --color-brand-text: #BFE3DB;
 }
-
+/* Agregando fuente Marlide Display Variable */
 @font-face{
     font-family: 'Marlide Display Variable';
     src:  url(MarlideDisplay_Bold.woff) format('woff');
@@ -14,7 +15,7 @@
 .brand-text{
     font-family: 'Marlide Display Variable';
     font-size: 35px;
-    color: #BFE3DB ;
+    color: var(--color-brand-text) ;
 }
 .jazzmin-login-page{
     background-color: var(--color-crema);
