@@ -1,5 +1,7 @@
 from django.db import models
 from fundaciones.models import Fundacion
+from cursos.models import Curso
+
 # Create your models here.
 class Adolescente(models.Model):
     apellido_paterno = models.CharField(max_length=100)
@@ -28,6 +30,14 @@ class Adolescente(models.Model):
     lugar_trabajo = models.CharField(max_length=200, blank=True)
     impedimento_continuar_estudios = models.TextField(blank=True)
     fundacion = models.ForeignKey(Fundacion, on_delete=models.CASCADE, related_name='adolescentes_inscritas')
+    cursos = models.ManyToManyField(Curso, through='CursosInscrito', blank=True),
 
     def __str__(self):
         return f'{self.nombres} {self.apellido_paterno} {self.apellido_materno}'
+    
+
+class CursosInscrito(models.Model):
+    cursos = models.ForeignKey(Curso, on_delete=models.CASCADE, blank=True, null=True)
+    adolescentes = models.ForeignKey(Adolescente, on_delete=models.CASCADE, blank=True, null=True)
+    fecha_inscripcion = models.DateTimeField(auto_created=True)
+    es_terminado = models.BooleanField()
