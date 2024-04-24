@@ -41,3 +41,14 @@ class CursosInscrito(models.Model):
     adolescentes = models.ForeignKey(Adolescente, on_delete=models.CASCADE, blank=True, null=True)
     fecha_inscripcion = models.DateTimeField(auto_created=True)
     es_terminado = models.BooleanField()
+
+
+class Progreso(models.Model):
+    adolescente = models.ForeignKey(Adolescente, on_delete=models.CASCADE, related_name= 'Progreso_del_adolescente')
+    primer_modulo = models.BooleanField(default=False)
+    segundo_modulo = models.BooleanField(default=False)
+    tercer_modulo = models.BooleanField(default=False)
+    cuarto_modulo = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "Progreso"

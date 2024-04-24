@@ -81,7 +81,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Rosas",
     "custom_css": "css/custom_jazzmin.css",
     "custom_js": None,
-    "show_ui_builder": True,
+    "show_ui_builder": False,
     "site_logo": "img/LOGO4.png",
     "login_logo": "img/texto-logo.png",
     "site_icon": "img/LOGO3.png",
