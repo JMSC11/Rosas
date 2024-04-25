@@ -1,32 +1,33 @@
 from django.db import models
 from fundaciones.models import Fundacion
 from cursos.models import Curso
+from Adolescentes.opciones_formulario import NACIONALIDAD_CHOICES, EDAD_CHOICES, SI_NO_OPCIONES, DISCAPACIDAD_CHOICES
 
 # Create your models here.
 class Adolescente(models.Model):
     apellido_paterno = models.CharField(max_length=100)
     apellido_materno = models.CharField(max_length=100)
     nombres = models.CharField(max_length=200)
-    edad = models.PositiveIntegerField()
+    edad = models.PositiveSmallIntegerField(choices=EDAD_CHOICES)
     canalizada_por = models.CharField(max_length=200)
     escolaridad_actual = models.CharField(max_length=200)
     tutor_responsable_nombre = models.CharField(max_length=200)
     tutor_responsable_apellidos = models.CharField(max_length=200)
     tutor_responsable_telefono = models.CharField(max_length=15)
-    nacionalidad = models.CharField(max_length=100)
+    nacionalidad = models.CharField(max_length=100, choices=NACIONALIDAD_CHOICES, default='MEXICANA')
+    otra_nacionalidad = models.CharField(max_length=100, blank=True, null=True)
     lugar_nacimiento = models.CharField(max_length=100)
-    pertenece_etnia = models.BooleanField(default=False)
-    tiene_discapacidad = models.BooleanField(default=False)
-    discapacidad_detalle = models.CharField(max_length=200, blank=True)
-    diagnostico_psicologico = models.BooleanField(default=False)
+    pertenece_etnia = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
+    discapacidad = models.CharField(max_length=100, choices=DISCAPACIDAD_CHOICES, default='Ninguna')
+    diagnostico_psicologico = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
     diagnostico_detalle = models.CharField(max_length=200, blank=True)
-    tiene_hijos = models.BooleanField(default=False)
-    posee_acta_nacimiento = models.BooleanField(default=False)
-    posee_seguro_social = models.BooleanField(default=False)
-    posee_curp = models.BooleanField(default=False)
-    estudia_actualmente = models.BooleanField(default=False)
+    tiene_hijos = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
+    posee_acta_nacimiento = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
+    posee_seguro_social = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
+    posee_curp = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
+    estudia_actualmente = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
     lugar_estudios = models.CharField(max_length=200, blank=True)
-    trabaja_actualmente = models.BooleanField(default=False)
+    trabaja_actualmente = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
     lugar_trabajo = models.CharField(max_length=200, blank=True)
     impedimento_continuar_estudios = models.TextField(blank=True)
     fundacion = models.ForeignKey(Fundacion, on_delete=models.CASCADE, related_name='adolescentes_inscritas')
@@ -40,15 +41,15 @@ class CursosInscrito(models.Model):
     cursos = models.ForeignKey(Curso, on_delete=models.CASCADE, blank=True, null=True)
     adolescentes = models.ForeignKey(Adolescente, on_delete=models.CASCADE, blank=True, null=True)
     fecha_inscripcion = models.DateTimeField(auto_created=True)
-    es_terminado = models.BooleanField()
+    es_terminado = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
 
 
 class Progreso(models.Model):
     adolescente = models.ForeignKey(Adolescente, on_delete=models.CASCADE, related_name= 'Progreso_del_adolescente')
-    primer_modulo = models.BooleanField(default=False)
-    segundo_modulo = models.BooleanField(default=False)
-    tercer_modulo = models.BooleanField(default=False)
-    cuarto_modulo = models.BooleanField(default=False)
+    primer_modulo = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
+    segundo_modulo = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
+    tercer_modulo = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
+    cuarto_modulo = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
 
     def __str__(self):
         return "Progreso"
