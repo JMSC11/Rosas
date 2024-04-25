@@ -1,7 +1,7 @@
 from django.db import models
 from fundaciones.models import Fundacion
 from cursos.models import Curso
-from Adolescentes.opciones_formulario import NACIONALIDAD_CHOICES, EDAD_CHOICES, SI_NO_OPCIONES, DISCAPACIDAD_CHOICES
+from Adolescentes.opciones_formulario import NACIONALIDAD_CHOICES, EDAD_CHOICES, SI_NO_OPCIONES, DISCAPACIDAD_CHOICES, TERMINADO
 
 # Create your models here.
 class Adolescente(models.Model):
@@ -41,15 +41,15 @@ class CursosInscrito(models.Model):
     cursos = models.ForeignKey(Curso, on_delete=models.CASCADE, blank=True, null=True)
     adolescentes = models.ForeignKey(Adolescente, on_delete=models.CASCADE, blank=True, null=True)
     fecha_inscripcion = models.DateTimeField(auto_created=True)
-    es_terminado = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
+    es_terminado = models.BooleanField(choices=TERMINADO, default=False)
 
 
 class Progreso(models.Model):
     adolescente = models.ForeignKey(Adolescente, on_delete=models.CASCADE, related_name= 'Progreso_del_adolescente')
-    primer_modulo = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
-    segundo_modulo = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
-    tercer_modulo = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
-    cuarto_modulo = models.BooleanField(choices=SI_NO_OPCIONES, default=False)
+    primer_modulo = models.BooleanField(choices=TERMINADO, default=False)
+    segundo_modulo = models.BooleanField(choices=TERMINADO, default=False)
+    tercer_modulo = models.BooleanField(choices=TERMINADO, default=False)
+    cuarto_modulo = models.BooleanField(choices=TERMINADO, default=False)
 
     def __str__(self):
         return "Progreso"
