@@ -19,3 +19,8 @@ SI_NO_OPCIONES = [
     (True, 'Sí'),
     (False, 'No'),
 ]
+
+TERMINADO = [
+    (True, 'TERMINADO'),
+    (False, 'PENDIENTE'),
+]
