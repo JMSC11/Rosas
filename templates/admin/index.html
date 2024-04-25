@@ -21,6 +21,25 @@
     {% endif %}
 
     <div class="col-lg-9 col-12">
+
+    <!-- Banner at the top -->
+    <div class="row  align-items-center pt-5 mb-5" style="background-color: rgba(193, 196, 227, 0.3);">
+        <div class="col-md-6 col-sm-12">
+            <div style="text-align: center; font-size: 1.5em; color: #C48288; margin-bottom: 50px; font-weight: bold;">
+                <strong>¡Descubre lo que la secretaria de mujeres tiene para ofrecerte!</strong> 
+                <br> 
+                <a href="https://www.semujeres.cdmx.gob.mx/" target="_blank" style="color: #3F4B7F; text-decoration: none; font-size: 1.4em;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Haz click aquí</a> para acceder a la página oficial.
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <img src="{% static 'img/mujer.png' %}" alt="Descripción de la imagen" style="max-width: 100%; height: auto;">
+            </div>
+        </div>
+    </div> 
+
+
+
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 {% for app in dashboard_list %}
@@ -66,21 +85,30 @@
                 </div>
         </div>
 
-    <!-- Banner at the bottom -->
-    <div class="row  align-items-center">
-        <div class="col-md-6 col-sm-12">
-            <div style="text-align: center; font-size: 1.5em; color: #C48288; margin-top: 50px; font-weight: bold;">
-                <strong>¡Descubre lo que la secretaria de mujeres tiene para ofrecerte!</strong> 
-                <br> 
-                <a href="https://www.semujeres.cdmx.gob.mx/" target="_blank" style="color: #3F4B7F; text-decoration: none; font-size: 1.4em;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Haz click aquí</a> para acceder a la página oficial.
-            </div>
+ 
+
+    <!-- Sección de Contactos -->
+    <h2 class="mt-5 text-center">Contactos</h2>
+    <div class="row align-items-center mt-5">
+        <div class="col-md-4 text-center">
+            <a href="http://locatel.cdmx.gob.mx/mujeres/"  target="_blank">
+                <img src="{% static 'img/linea_mujeres.png' %}" alt="Psicólogas" class="img-fluid">
+                <p>Psicólogas</p>
+            </a>
         </div>
-        <div class="col-md-6 col-sm-12">
-            <div style="text-align: center; margin-top: 50px;">
-                <img src="{% static 'img/mujer.png' %}" alt="Descripción de la imagen" style="max-width: 100%; height: auto;">
-            </div>
+        <div class="col-md-4 text-center">
+            <a href="https://www.semujeres.cdmx.gob.mx/abogadas-de-las-mujeres"  target="_blank">
+                <img src="{% static 'img/abogada.png' %}" alt="Abogadas" class="img-fluid">
+                <p>Abogadas</p>
+            </a>
         </div>
-    </div>  
+        <div class="col-md-4 text-center">
+            <a href="https://www.semujeres.cdmx.gob.mx/lunas"  target="_blank">
+                <img src="{% static 'img/lunas.png' %}" alt="Lunas" class="img-fluid">
+                <p>Lunas</p>
+            </a>
+        </div>
+    </div>
 
     </div>
 
