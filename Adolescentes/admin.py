@@ -12,7 +12,7 @@ class ProgresoInline(admin.StackedInline):
     can_delete = False
     extra = 0
 class AdolescentesAdmin(admin.ModelAdmin):
-    inlines = [CursoInscritoInline, ProgresoInline]
+    inlines = [ProgresoInline, CursoInscritoInline]
     list_display = ['apellido_paterno',
                     'apellido_materno',
                     'nombres',
