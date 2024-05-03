@@ -88,22 +88,22 @@ JAZZMIN_SETTINGS = {
     "site_logo_classes": "null",
     "welcome_sign": "¡Bienvenidos!. Ingresa tus credeciales para comenzar.",
     "copyright": "Code Busters 🚀 Made with ❤️ ",
-    "search_model": ["auth.User", "auth.Group", "cursos.Curso"], 
-    # "topmenu_links": [
+    
+    "search_model": ["auth.User", "auth.Group", "cursos.Curso"],
+    
+    "show_sidebar": True,
 
-    # # Url that gets reversed (Permissions can be added)
-    # {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+    # Whether to aut expand the menu
+    "navigation_expanded": True,
 
-    # # external url that opens in a new window (Permissions can be added)
-    # {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+    # Hide these apps when generating side menu e.g (auth)
+    "hide_apps": [],
 
-    # # model admin to link to (Permissions checked against model)
-    # {"model": "auth.User"},
+    # Hide these models when generating side menu (e.g auth.user)
+    "hide_models": [],
 
-    # # App with dropdown menu to all its models pages (Permissions checked against models)
-    # {"app": "books"},
-    # ],
 }
+
 
 JAZZMIN_UI_TWEAKS = {
 

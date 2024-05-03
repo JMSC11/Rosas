@@ -9,6 +9,7 @@ from django import forms
 
 admin.site.unregister(Group)
 admin.site.unregister(User)
+
 class CursoInscritoInline(admin.TabularInline):
     model = CursosInscrito
     extra = 1
@@ -47,3 +48,9 @@ class AdolescenteAdmin(admin.ModelAdmin):
         if obj:  # solo hacer fundacion readonly si el objeto ya existe
             return ('fundacion',)
         return ()
+    
+    def has_module_permission(self, request):
+        # Si el usuario es 'rosas-admin' no mostrar este modelo en el admin principal
+        if request.user.username == 'rosas-admin':
+            return False
+        return super().has_module_permission(request)
