@@ -2,6 +2,9 @@
 {% load i18n static jazzmin %}
 {% get_jazzmin_ui_tweaks as jazzmin_ui %}
 
+<head>
+    <link rel="stylesheet" href="{% static 'css/atropos.min.css' %}">
+</head>
 {% block bodyclass %}{{ block.super }} dashboard{% endblock %}
 
 {% block content_title %} {% trans 'Dashboard' %} {% endblock %}
@@ -20,6 +23,7 @@
         {% widthratio dashboard_list|length 2 1 as middle %}
     {% endif %}
 
+
     <div class="col-lg-9 col-12">
 
     <!-- Banner at the top -->
@@ -33,7 +37,7 @@
         </div>
         <div class="col-md-6 col-sm-12">
             <div style="text-align: center; margin-bottom: 50px;">
-                <img src="{% static 'img/mujer.png' %}" alt="Descripción de la imagen" style="max-width: 100%; height: auto; border-radius: 25px;">
+                <img src="{% static 'img/mujer.png' %}" alt="Descripción de la imagen" style="max-width: 100%; height: auto;">
             </div>
         </div>
     </div> 
@@ -87,29 +91,62 @@
 
  
 
-    <!-- Sección de Contactos -->
-    <h2 class="mt-5 text-center">Contactos</h2>
+    <!-- Sección de Analytics -->
+    <h2 class="mt-5 text-center">Analytics</h2>
     <div class="row align-items-center mt-5">
-        <div class="col-md-4 text-center">
-            <a href="http://locatel.cdmx.gob.mx/mujeres/"  target="_blank">
-                <img src="{% static 'img/linea_mujeres.png' %}" alt="Psicólogas" class="img-fluid">
-                <p class="text-xl">Psicólogas</p>
-            </a>
+        <div class="col-md-6 text-center">
+            <p  style="text-align: justify; font-size: 1.5em; color: #C48288; margin-bottom: 50px; font-weight: bold;">
+                Te invitamos a descubrir la sección de Analytics, donde podrás visualizar análisis gráficos detallados
+                que transforman los datos de las fundaciones en insights claros. Navega por nuestras diversas
+                visualizaciones para obtener una comprensión más profunda y efectiva de las tendencias y
+                métricas clave. ¡Explora ahora y toma decisiones informadas con mayor confianza!</p>
         </div>
-        <div class="col-md-4 text-center">
-            <a href="https://www.semujeres.cdmx.gob.mx/abogadas-de-las-mujeres"  target="_blank">
-                <img src="{% static 'img/abogada.png' %}" alt="Abogadas" class="img-fluid">
-                <p class="text-xl">Abogadas</p>
-            </a>
-        </div>
-        <div class="col-md-4 text-center">
-            <a href="https://www.semujeres.cdmx.gob.mx/lunas"  target="_blank">
-                <img src="{% static 'img/lunas.png' %}" alt="Lunas" class="img-fluid">
-                <p class="text-xl">Lunas</p>
-            </a>
+        <div class="col-md-6 text-center">
+
+            <div class="atropos my-atropos">
+                <!-- scale container (required) -->
+                <div class="atropos-scale">
+                  <!-- rotate container (required) -->
+                  <div class="atropos-rotate">
+                    <!-- inner container (required) -->
+                    <div class="atropos-inner">
+                      <!-- put your custom content here -->
+                      <a href="http://locatel.cdmx.gob.mx/mujeres/"  target="_blank">
+                        <img src="{% static 'img/analytics.png' %}" alt="Analytics" class="img-fluid" data-atropos-offset="5">
+                        <p>Ver Analytics</p>
+                    </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
         </div>
     </div>
 
+
+        <!-- Sección de Contactos -->
+        <h2 class="mt-5 text-center">Contactos</h2>
+        <div class="row align-items-center mt-5">
+            <div class="col-md-4 text-center">
+                <a href="http://locatel.cdmx.gob.mx/mujeres/"  target="_blank">
+                    <img src="{% static 'img/linea_mujeres.png' %}" alt="Psicólogas" class="img-fluid">
+                    <p>Psicólogas</p>
+                </a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.semujeres.cdmx.gob.mx/abogadas-de-las-mujeres"  target="_blank">
+                    <img src="{% static 'img/abogada.png' %}" alt="Abogadas" class="img-fluid">
+                    <p>Abogadas</p>
+                </a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.semujeres.cdmx.gob.mx/lunas"  target="_blank">
+                    <img src="{% static 'img/lunas.png' %}" alt="Lunas" class="img-fluid">
+                    <p>Lunas</p>
+                </a>
+            </div>
+        </div>
     </div>
 
 
@@ -176,7 +213,17 @@
             </div>
         </div>
     </div>
-
+    <!-- Scripts de Atropos.js -->
+    <script src="{% static 'js/atropos.min.js' %}"></script>
+    <script>
+        document.querySelectorAll('.my-atropos').forEach(function(el) {
+            Atropos({
+                el: el,
+                shadowOffset: 30,
+                shadowScale: 0.5,
+            });
+        });
+    </script>
   
 
 {% endblock %}

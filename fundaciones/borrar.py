@@ -1,3 +1,31 @@
+fundaciones/adolecentes
+
+from django.contrib import admin
+from Adolescentes.models import Adolescente, Fundacion
+from django.utils.html import mark_safe
+
+/*fundaciones admin*/
+class AdolescenteInline(admin.TabularInline):
+    model = Adolescente
+    fields = ('nombres', 'apellido_paterno', 'apellido_materno')
+    readonly_fields = ('nombres', 'apellido_paterno', 'apellido_materno')
+    extra = 0
+    can_delete = False
+    show_change_link = True
+
+class FundacionAdmin(admin.ModelAdmin):
+    list_display = ('nombre_fundacion', 'imagen_preview', 'descripcion')
+    inlines = [AdolescenteInline]
+
+    def imagen_preview(self, obj):
+        if obj.imagen:
+            return mark_safe(f'<img src="{obj.imagen.url}" width="50" height="50" />')
+        return "No image"
+    imagen_preview.short_description = 'Imagen'
+
+admin.site.register(Fundacion, FundacionAdmin)
+
+"""adolescentes admin"""
 from django.contrib import admin
 from .models import Adolescente, CursosInscrito, Progreso
 from fundaciones.models import Fundacion
@@ -30,19 +58,7 @@ class AdolescenteAdminForm(forms.ModelForm):
 @admin.register(Adolescente)
 class AdolescenteAdmin(admin.ModelAdmin):
     form = AdolescenteAdminForm
-    inlines = [ProgresoInline, CursoInscritoInline]
     list_display = ('nombres', 'apellido_paterno', 'apellido_materno', 'fundacion')
-
-
-    def get_queryset(self, request):
-            queryset = super().get_queryset(request)
-            if not request.user.is_superuser:
-                queryset = queryset.filter(fundacion__gestor=request.user)
-            return queryset
-    def save_model(self, request, obj, form, change):
-        super().save_model(request, obj, form, change)
-        if not change:  # Si es una nueva adolescente
-            Progreso.objects.get_or_create(adolescente=obj)
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
@@ -59,5 +75,3 @@ class AdolescenteAdmin(admin.ModelAdmin):
         if obj:  # solo hacer fundacion readonly si el objeto ya existe
             return ('fundacion',)
         return ()
-    def has_module_permission(self, request):
-        return not request.user.is_superuser
