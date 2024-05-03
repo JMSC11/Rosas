@@ -16,11 +16,10 @@ Including another URLconf
 """
 # urls.py
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth.views import LogoutView
-from django.views.decorators.http import require_POST
 
 urlpatterns = [
-    path('', admin.site.urls),
-    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    path('', admin.site.urls),  # Corregido para usar correctamente admin.site.urls
+    path('logout/', LogoutView.as_view(next_page='admin:login'), name='logout'),
 ]
