@@ -46,10 +46,10 @@ class CursosInscrito(models.Model):
 
 class Progreso(models.Model):
     adolescente = models.ForeignKey(Adolescente, on_delete=models.CASCADE, related_name= 'Progreso_del_adolescente')
-    primer_modulo = models.BooleanField(choices=TERMINADO, default=False)
-    segundo_modulo = models.BooleanField(choices=TERMINADO, default=False)
-    tercer_modulo = models.BooleanField(choices=TERMINADO, default=False)
-    cuarto_modulo = models.BooleanField(choices=TERMINADO, default=False)
+    Autoestima = models.BooleanField(choices=TERMINADO, default=False)
+    Necesidades_e_intereses = models.BooleanField(choices=TERMINADO, default=False)
+    Habilidades_sociales  = models.BooleanField(choices=TERMINADO, default=False)
+    Derechos_humanos = models.BooleanField(choices=TERMINADO, default=False)
 
     def __str__(self):
         return "Progreso"
