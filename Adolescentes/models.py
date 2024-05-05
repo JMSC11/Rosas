@@ -1,7 +1,7 @@
 from django.db import models
 from fundaciones.models import Fundacion
 from cursos.models import Curso
-from Adolescentes.opciones_formulario import NACIONALIDAD_CHOICES, EDAD_CHOICES, SI_NO_OPCIONES, DISCAPACIDAD_CHOICES, TERMINADO
+from Adolescentes.opciones_formulario import NACIONALIDAD_CHOICES, EDAD_CHOICES, SI_NO_OPCIONES, DISCAPACIDAD_CHOICES, TERMINADO, ESCOLARIDAD
 
 # Create your models here.
 class Adolescente(models.Model):
@@ -10,7 +10,7 @@ class Adolescente(models.Model):
     nombres = models.CharField(max_length=200)
     edad = models.PositiveSmallIntegerField(choices=EDAD_CHOICES)
     canalizada_por = models.CharField(max_length=200)
-    escolaridad_actual = models.CharField(max_length=200)
+    escolaridad_actual = models.CharField(max_length=200, choices= ESCOLARIDAD, default='Secundaria')
     tutor_responsable_nombre = models.CharField(max_length=200)
     tutor_responsable_apellidos = models.CharField(max_length=200)
     tutor_responsable_telefono = models.CharField(max_length=15)

@@ -24,3 +24,10 @@ TERMINADO = [
     (True, 'TERMINADO'),
     (False, 'PENDIENTE'),
 ]
+
+ESCOLARIDAD = [
+    ('Primaria', 'Primaria'),
+    ('Secundaria', 'Secundaria'),
+    ('Bachillerato', 'Bachillerato'),
+    ('Licenciatura', 'Licenciatura'),
+]

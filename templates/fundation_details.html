@@ -1,0 +1,383 @@
+{% load i18n static jazzmin %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Analytics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+
+
+</head>
+
+
+<body class="font-sans leading-normal tracking-normal">
+
+    <div class="flex flex-col md:flex-row">
+
+        <div class="main-content flex-1 bg-gray-100  pb-24 md:pb-5">
+
+            <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+                <h3 class="font-bold pl-2">Analytics</h3>
+            </div>
+
+            <div class="flex flex-row flex-wrap flex-grow mt-2">
+
+                <h2 class="text-3xl font-bold text-center my-8 w-full">Detalles de la Fundación: {{detalle_fundacion.nombre_fundacion}}</h2>
+                <!-- fundation_details.html -->
+                    <div class="container mx-auto px-4 py-8">                      
+                        <div class="flex flex-wrap mt-4">
+                            <!-- Contenedor de la Imagen -->
+                            <div class="w-full md:w-1/2 p-4">
+                                {% if detalle_fundacion.imagen %}
+                                    <img src="{{ detalle_fundacion.imagen.url }}" alt="Imagen de {{ detalle_fundacion.nombre_fundacion }}" class="rounded-lg shadow-lg mx-auto">
+                                {% else %}
+                                    <div class="text-center p-12 border border-gray-300 rounded-lg">
+                                        <p class="text-gray-700 text-sm">Sin imagen disponible</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Contenedor de la Descripción -->
+                            <div class="w-full md:w-1/2 p-4">
+                                <div class="bg-white p-6 rounded-lg shadow-lg">
+                                    
+                                    {% if detalle_fundacion.descripcion %}
+                                        <p class="text-gray-600">{{ detalle_fundacion.descripcion }}</p>
+                                    {% else %}
+                                        <p class="text-gray-500">No se ha proporcionado una descripción.</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+
+                    <div class="container mx-auto px-4 py-8"> 
+                        <div class="flex flex-wrap justify-around ">
+                            <!-- Gráfica Secundaria -->
+                            <div class="w-full md:w-1/2 xl:w-1/3 px-3 mb-6">
+                                <div class="p-6 bg-white shadow-lg rounded-lg">
+                                    <p class="text-3xl font-bold text-center my-8">Adolescentes en total: {{ total_adolescentes }}</p>
+                                    <canvas id="adolescentChart"></canvas>
+                                    <p class="text-3xl font-bold text-center my-8">{{ adolescentes_secundaria }} de {{ total_adolescentes }} en secundaria</p>
+                                </div>
+                            </div>
+                        
+                            <!-- Gráfica Bachillerato -->
+                            <div class="w-full md:w-1/2 xl:w-1/3 px-3 mb-6">
+                                <div class="p-6 bg-white shadow-lg rounded-lg">
+                                    <p class="text-3xl font-bold text-center my-8">Adolescentes en total: {{ total_adolescentes }}</p>
+                                    <canvas id="adolescentBachoChart"></canvas>
+                                    <p class="text-3xl font-bold text-center my-8">{{ adolescentes_bachillerato }} de {{ total_adolescentes }} en bachillerato</p>
+                                </div>
+                            </div>
+                        
+                            <!-- Gráfica Tiene Hijos -->
+                            <div class="w-full md:w-1/2 xl:w-1/3 px-3 mb-6">
+                                <div class="p-6 bg-white shadow-lg rounded-lg">
+                                    <p class="text-3xl font-bold text-center my-8">Adolescentes en total: {{ total_adolescentes }}</p>
+                                    <canvas id="adolescentHijosChart"></canvas>
+                                    <p class="text-3xl font-bold text-center my-8">{{ adolescentes_con_hijos }} de {{ total_adolescentes }} tienen hijos</p>
+                                </div>
+                            </div>
+                        </div>
+                </div>  
+
+                <!--Papeles-->
+                <h2 class="text-3xl font-bold text-center my-8 w-full">Papeles</h2>
+
+                <div class="container mx-auto px-4 py-8"> 
+                    <div class="flex flex-wrap justify-around ">
+                        <!-- Gráfica Papeles -->
+                        <div class="w-full md:w-1/2 xl:w-1/3 px-3 mb-6">
+                            <div class="p-6 bg-white shadow-lg rounded-lg">
+                                <p class="text-3xl font-bold text-center my-8">Adolescentes en total: {{ total_adolescentes }}</p>
+                                <canvas id="adolescentPapelesChart"></canvas>
+                                <p class="text-3xl font-bold text-center my-8">{{ adolescentes_sin_papeles }} de {{ total_adolescentes }} no tiene documentacion completa</p>
+                            </div>
+                        </div>
+
+                        <!--Tabla adolescentes sin papeles-->
+                        
+                        <div class="overflow-x-auto relative  sm:rounded-lg">
+                            <h4 class="text-xl font-semibold text-gray-900 dark:text-white px-6 py-4">
+                                Adolescentes sin documentos completos
+                            </h4>
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 shadow-md">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <tr>
+                                        <th scope="col" class="py-3 px-6">
+                                            Nombre del Adolescente
+                                        </th>
+                                        <th scope="col" class="py-3 px-6">
+                                            Apellido del Adolescente
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for adolescente in lista_adolescentes_sin_papeles %}
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <td class="py-4 px-6">
+                                            {{ adolescente.nombres }}
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            {{ adolescente.apellido_paterno }}
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <td colspan="2" class="py-4 px-6 text-center">
+                                            No hay adolescentes sin documentos.
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    
+                    </div>
+
+                <!--Progreso-->
+                        
+                <div class="overflow-x-auto relative sm:rounded-lg">
+                    <h2 class="text-3xl font-bold text-center my-8 w-full">Progreso</h2>   
+                    <!-- Gráfica Progreso -->
+                    <div class="flex justify-center w-full px-3 mb-6">
+                        <div class="p-6 bg-white shadow-lg rounded-lg w-full max-w-6xl">
+                            <p class="text-3xl font-bold text-center my-8">Adolescentes en total: {{ total_adolescentes }}</p>
+                            <canvas class="shadow-md w-full" id="ProgresoChart"></canvas>
+                        </div>
+                    </div>   
+                </div>
+                
+                
+            
+            </div>
+
+
+
+                          
+
+            </div>                
+                    
+
+
+            </div>
+        </div>
+    </div>
+
+    <!--Grafica secundaria-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('adolescentChart').getContext('2d');
+            var totalAdolescentes = {{ total_adolescentes }};
+            var adolescentesSecundaria = {{ adolescentes_secundaria }};
+            var adolescentesNoSecundaria = totalAdolescentes - adolescentesSecundaria; // Adolescentes que no están en secundaria
+        
+            var chart = new Chart(ctx, {
+                type: 'pie',  // Tipo de gráfico
+                data: {
+                    labels: ['Otro', 'Secundaria'],
+                    datasets: [{
+                        label: 'Cantidad de Adolescentes',
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',  // Color para 'Otro'
+                            'rgba(54, 162, 235, 0.8)'   // Color para 'Secundaria'
+                        ],
+                        data: [adolescentesNoSecundaria, adolescentesSecundaria]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        datalabels: {
+                            color: '#fff',
+                            font: {
+                                weight: 'bold'
+                            },
+                            formatter: (value, ctx) => {
+                                let percentage = (value / totalAdolescentes * 100).toFixed(2); // Calcula el porcentaje
+                                return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value + ' (' + percentage + '%)';
+                            }
+                        }
+                    }
+                }
+            });
+        });
+        </script>
+    <!--Grafica bachillerato-->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var ctx = document.getElementById('adolescentBachoChart').getContext('2d');
+                var totalAdolescentes = {{ total_adolescentes }};
+                var adolescentesBacho = {{ adolescentes_bachillerato }};
+                var adolescentesNoBacho = totalAdolescentes - adolescentesBacho; // Adolescentes que no están en secundaria
+            
+                var chart = new Chart(ctx, {
+                    type: 'pie',  // Tipo de gráfico
+                    data: {
+                        labels: ['Otro', 'Bachillerato'],
+                        datasets: [{
+                            label: 'Cantidad de Adolescentes',
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.8)',  // Color para 'Otro'
+                                'rgba(54, 162, 235, 0.8)'   // Color para 'Secundaria'
+                            ],
+                            data: [adolescentesNoBacho, adolescentesBacho]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            datalabels: {
+                                color: '#fff',
+                                font: {
+                                    weight: 'bold'
+                                },
+                                formatter: (value, ctx) => {
+                                    let percentage = (value / totalAdolescentes * 100).toFixed(2); // Calcula el porcentaje
+                                    return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value + ' (' + percentage + '%)';
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+            </script>
+
+    <!--Grafica tiene hijos-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('adolescentHijosChart').getContext('2d');
+            var totalAdolescentes = {{ total_adolescentes }};
+            var adolescentesConHijos = {{ adolescentes_con_hijos }};
+            var adolescentesNoHijos = totalAdolescentes - adolescentesConHijos; // Adolescentes que no están en secundaria
+        
+            var chart = new Chart(ctx, {
+                type: 'pie',  // Tipo de gráfico
+                data: {
+                    labels: ['Sin hijos', 'Tiene hijos'],
+                    datasets: [{
+                        label: 'Cantidad de Adolescentes',
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',  // Color para 'Otro'
+                            'rgba(54, 162, 235, 0.8)'   // Color para 'Secundaria'
+                        ],
+                        data: [adolescentesNoHijos, adolescentesConHijos]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        datalabels: {
+                            color: '#fff',
+                            font: {
+                                weight: 'bold'
+                            },
+                            formatter: (value, ctx) => {
+                                let percentage = (value / totalAdolescentes * 100).toFixed(2); // Calcula el porcentaje
+                                return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value + ' (' + percentage + '%)';
+                            }
+                        }
+                    }
+                }
+            });
+        });
+        </script>    
+        
+    <!--Grafica Sin Papeles-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('adolescentPapelesChart').getContext('2d');
+            var totalAdolescentes = {{ total_adolescentes }};
+            var adolescentesSinPapeles = {{ adolescentes_sin_papeles }};
+            var adolescentesConPapeles = totalAdolescentes - adolescentesSinPapeles; // Adolescentes que no están en secundaria
+        
+            var chart = new Chart(ctx, {
+                type: 'pie',  // Tipo de gráfico
+                data: {
+                    labels: ['Sin Papeles', 'Con Papeles'],
+                    datasets: [{
+                        label: 'Cantidad de Adolescentes',
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',  // Color para 'Otro'
+                            'rgba(54, 162, 235, 0.8)'   // Color para 'Secundaria'
+                        ],
+                        data: [adolescentesSinPapeles, adolescentesConPapeles]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        datalabels: {
+                            color: '#fff',
+                            font: {
+                                weight: 'bold'
+                            },
+                            formatter: (value, ctx) => {
+                                let percentage = (value / totalAdolescentes * 100).toFixed(2); // Calcula el porcentaje
+                                return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value + ' (' + percentage + '%)';
+                            }
+                        }
+                    }
+                }
+            });
+        });
+        </script>   
+        
+    <!--Grafica Progreso-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('ProgresoChart').getContext('2d');
+            const totalAdolescentes = {{ total_adolescentes }};
+            const progressChart = new Chart(ctx, {
+                type: 'line',  // Gráfico de línea
+                data: {
+                    labels: ['Autoestima', 'Necesidades e intereses', 'Habilidades sociales', 'Derechos humanos'],
+                    datasets: [{
+                        label: 'Progreso',
+                        data: [
+                            {{ adolescentes_autoestima }},
+                            {{ adolescentes_necesidades }},
+                            {{ adolescentes_habilidades }},
+                            {{ adolescentes_derechos }}
+                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                suggestedMax: totalAdolescentes  // Utiliza suggestedMax para el máximo del eje Y
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true
+                        }
+                    },
+                    responsive: true
+                }
+            });
+        });
+        </script>
+        
+        
+              
+        
+</body>
+
+</html>
