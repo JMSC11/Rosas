@@ -8,18 +8,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Analytics</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <style></style>
 </head>
 
 
-<body class="font-sans leading-normal tracking-normal">
+<body class="bg-[#f0eae6] font-sans leading-normal tracking-normal">
 
     <div class="flex flex-col md:flex-row">
 
         <div class="main-content flex-1 pb-24 md:pb-5">
 
-
-            <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+            <div class="bg-[#273a68] to-gray-800 p-4 shadow text-2xl text-white">
                 <h3 class="font-bold pl-2">Analytics</h3>
             </div>
 
@@ -27,14 +26,17 @@
             <div class="flex flex-wrap">
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                     <!--Metric Card-->
-                    <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5" >
+                    <div
+                        class="bg-[#c3c5e4] border-b-4 border-pink-600 rounded-lg shadow-xl p-5">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
-                                <div class="rounded-full p-5 bg-green-600" ><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                <div class="rounded-full p-5 bg-pink-600"><i class="fa fa-wallet fa-2x fa-inverse"></i>
+                                </div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Adolescentes</h5>
-                                <h3 class="font-bold text-3xl"> {{ total_adolescentes }} <span class="text-green-500"><i class="fas fa-caret-up"></i></span></h3>
+                                <h3 class="font-bold text-3xl"> {{ total_adolescentes }} <span class="text-pink-500"><i
+                                            class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>
                     </div>
@@ -42,14 +44,17 @@
                 </div>
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                     <!--Metric Card-->
-                    <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
+                    <div
+                        class="bg-[#c3c5e4] border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
-                                <div class="rounded-full p-5 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                                <div class="rounded-full p-5 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i>
+                                </div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Fundaciones</h5>
-                                <h3 class="font-bold text-3xl">{{ total_fundaciones }} <span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span></h3>
+                                <h3 class="font-bold text-3xl">{{ total_fundaciones }} <span class="text-pink-500"><i
+                                            class="fas fa-exchange-alt"></i></span></h3>
                             </div>
                         </div>
                     </div>
@@ -57,14 +62,17 @@
                 </div>
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                     <!--Metric Card-->
-                    <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
+                    <div
+                        class="bg-[#c3c5e4] border-b-4 border-pink-600 rounded-lg shadow-xl p-5">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
-                                <div class="rounded-full p-5 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                                <div class="rounded-full p-5 bg-pink-600"><i
+                                        class="fas fa-user-plus fa-2x fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Cursos</h5>
-                                <h3 class="font-bold text-3xl"> {{ total_cursos }} <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
+                                <h3 class="font-bold text-3xl"> {{ total_cursos }} <span class="text-pink-600"><i
+                                            class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>
                     </div>
@@ -72,103 +80,116 @@
                 </div>
             </div>
             <!--Tabla de fundaciones-->
-            <div class="flex flex-col items-center w-full mt-2"> <!-- Ajusta la dirección a columna y alinea todo al centro -->
+            <div class="flex flex-col items-center w-full mt-2">
+                <!-- Ajusta la dirección a columna y alinea todo al centro -->
 
-              <h2 class="text-3xl font-bold text-center my-8 w-full">Lista de Fundaciones</h2> <!-- Asegura que el título tiene el ancho completo para centrar el texto correctamente -->
-            
-              <div class="w-full flex justify-center"> <!-- Asegura que el contenedor de la tabla sea del ancho completo y centre la tabla -->
-                <table class="w-5/6 divide-y divide-gray-300 mt-4 shadow-lg bg-white"> <!-- Aumenta el ancho de la tabla a 5/6 del contenedor -->
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Imagen
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Nombre
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Descripción
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Acciones
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        {% for fundacion in lista_fundaciones %}
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                              {% if fundacion.imagen %}
-                                <img src="{% if fundacion.imagen %}{{ fundacion.imagen.url }}{% else %}{% static 'img/default_logo.png' %}{% endif %}" alt="Logo" class="h-10 w-10 rounded-full mx-auto">
-                            {% else %}
-                                <span class="text-gray-400">Sin imagen</span>  <!-- Texto cuando no hay imagen -->
-                            {% endif %}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                                {{ fundacion.nombre_fundacion }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                {% if fundacion.descripcion %}
-                                  {{ fundacion.descripcion }}
-                                {% else %}
-                                    <span class="text-gray-400">Sin descripcion</span>  <!-- Texto cuando no hay imagen -->
-                                {% endif %}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                <a href="{% url 'detalle-fundacion' fundacion.id %}" class="text-indigo-600 hover:text-indigo-900">Ver Detalles</a>
-                            </td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="4" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                                No hay fundaciones registradas.
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-              </div>
+                <h2 class="text-3xl font-bold text-center my-8 w-full">Lista de Fundaciones</h2>
+                <!-- Asegura que el título tiene el ancho completo para centrar el texto correctamente -->
+
+                <div class="w-full flex justify-center">
+                    <!-- Asegura que el contenedor de la tabla sea del ancho completo y centre la tabla -->
+                    <table class="w-5/6 divide-y divide-gray-300 mt-4 shadow-lg bg-white">
+                        <!-- Aumenta el ancho de la tabla a 5/6 del contenedor -->
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col"
+                                    class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Imagen
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Nombre
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Descripción
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for fundacion in lista_fundaciones %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                    {% if fundacion.imagen %}
+                                    <img src="{% if fundacion.imagen %}{{ fundacion.imagen.url }}{% else %}{% static 'img/default_logo.png' %}{% endif %}"
+                                        alt="Logo" class="h-10 w-10 rounded-full mx-auto">
+                                    {% else %}
+                                    <span class="text-gray-400">Sin imagen</span> <!-- Texto cuando no hay imagen -->
+                                    {% endif %}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                    {{ fundacion.nombre_fundacion }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                    {% if fundacion.descripcion %}
+                                    {{ fundacion.descripcion }}
+                                    {% else %}
+                                    <span class="text-gray-400">Sin descripcion</span>
+                                    <!-- Texto cuando no hay imagen -->
+                                    {% endif %}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <a href="{% url 'detalle-fundacion' fundacion.id %}"
+                                        class="text-indigo-600 hover:text-indigo-900">Ver Detalles</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                                    No hay fundaciones registradas.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            
+
             <!--Fin Tabla de fundaciones-->
 
             <!-- Tabla de categorias-->
 
             <div class="flex flex-col items-center w-full mt-8">
-              <h2 class="text-3xl font-bold text-center my-8 w-full">Categorías</h2>
-              <div class="w-full flex justify-center">
-                  <table class="w-5/6 divide-y divide-gray-300 mt-4 shadow-lg bg-white">
-                      <thead class="bg-gray-50">
-                          <tr>
-                              <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                  Nombre de la Categoría
-                              </th>
-                              <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                  Acciones
-                              </th>
-                          </tr>
-                      </thead>
-                      <tbody class="bg-white divide-y divide-gray-200">
-                          {% for categoria in lista_categorias %}
-                          <tr>
-                              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                                  {{ categoria.nombre_categoria }}
-                              </td>
-                              <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Ver Detalles</a>
-                              </td>
-                          </tr>
-                          {% empty %}
-                          <tr>
-                              <td colspan="4" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                                  No hay categorias registradas.
-                              </td>
-                          </tr>
-                          {% endfor %}
-                      </tbody>
-                  </table>
+                <h2 class="text-3xl font-bold text-center my-8 w-full">Categorías</h2>
+                <div class="w-full flex justify-center">
+                    <table class="w-5/6 divide-y divide-gray-300 mt-4 shadow-lg bg-white">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col"
+                                    class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Nombre de la Categoría
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for categoria in lista_categorias %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                    {{ categoria.nombre_categoria }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Ver Detalles</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                                    No hay categorias registradas.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-              </div>
+            </div>
 
 
             <!--Fin Tabla de categorias-->
