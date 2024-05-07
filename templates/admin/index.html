@@ -9,19 +9,14 @@
 
 {% block content_title %} {% trans 'Dashboard' %} {% endblock %}
 
-
-
-
 {% block content %}
     {% get_side_menu using="app_list" as dashboard_list %}
     {% if dashboard_list %}
         {% widthratio dashboard_list|length 2 1 as middle %}
     {% endif %}
 
-
     <div class="col-lg-9 col-12">
 
-    <!-- Banner at the top -->
     <div class="row  align-items-center pt-5 mb-5" style="background-color: rgba(193, 196, 227, 0.3);">
         <div class="col-md-6 col-sm-12">
             <div style="text-align: center; font-size: 1.5em; color: #C48288; margin-bottom: 50px; font-weight: bold;">
@@ -36,8 +31,6 @@
             </div>
         </div>
     </div> 
-
-
 
         <div class="row">
             <div class="col-md-6 col-sm-12">
@@ -114,11 +107,8 @@
                   </div>
                 </div>
               </div>
-
-
         </div>
     </div>
-
 
         <!-- Sección de Contactos -->
         <h2 class="mt-5 text-center">Contactos</h2>
@@ -143,7 +133,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- History -->
     <div class="col-lg-3 col-12">
