@@ -91,29 +91,10 @@
         // Asegúrate de que el objeto global para las gráficas existe
         window.myCharts = window.myCharts || {};
     
-        // Función para generar un color RGB aleatorio
-        function generateRandomColor() {
-            var r = Math.floor(Math.random() * 256); // Rojo: 0-255
-            var g = Math.floor(Math.random() * 256); // Verde: 0-255
-            var b = Math.floor(Math.random() * 256); // Azul: 0-255
-            return `rgba(${r}, ${g}, ${b}`;
-        }
-    
-        // Función para obtener colores únicos
-        function getUniqueColors(count) {
-            const colors = new Set();
-            while (colors.size < count) {
-                colors.add(generateRandomColor());
-            }
-            return [...colors];
-        }
-    
         {% for curso in cursos %}
         // Solo ejecutar el código de la gráfica si hay adolescentes inscritos
         {% if curso.adolescentes_inscritos > 0 %}
         (function() {
-            const backgroundColors = getUniqueColors(6).map(color => `${color}, 0.2)`);
-    
             var ctx = document.getElementById('pieChart-{{ curso.id }}').getContext('2d');
             var data = {
                 labels: [
@@ -127,9 +108,23 @@
                         {{ fundacion.cantidad }},
                         {% endfor %}
                     ],
-                    backgroundColor: backgroundColors,
-                    
-                    borderWidth: 0
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
                 }]
             };
     
@@ -157,7 +152,6 @@
         {% endif %}
         {% endfor %}
     </script>
-    
     
     
         
