@@ -81,7 +81,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Rosas",
     "custom_css": "css/custom_jazzmin.css",
     "custom_js": None,
-    "show_ui_builder": False,
+    "show_ui_builder": True,
     "site_logo": "img/LOGO4.png",
     "login_logo": "img/texto-logo.png",
     "site_icon": "img/LOGO3.png",
@@ -112,6 +112,14 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_flat_style": True,
     "theme": "lux",
     "sidebar": "sidebar-light-lightblue",
+    "button_classes": {
+        "primary": "btn-outline-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    }    
 
 }
 

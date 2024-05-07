@@ -11,6 +11,7 @@ class AdolescenteInline(admin.TabularInline):
     extra = 0
     can_delete = False
     show_change_link = True
+    
 class FundacionAdmin(admin.ModelAdmin):
     list_display = ('nombre_fundacion', 'imagen_preview', 'descripcion')
     inlines = [AdolescenteInline]

@@ -45,12 +45,12 @@
                                 {% for model in app.models %}
                                     <tr>
                                         <td>
-                                            {% if model.url %}<a href="{{ model.url }}">{{ model.name }}</a>{% else %}{{ model.name }}{% endif %}
+                                            {% if model.url %}<a class="btn btn-xs  {{ jazzmin_ui.button_classes.primary }} viewlink" href="{{ model.url }}">{{ model.name }}</a>{% else %}{{ model.name }}{% endif %}
                                         </td>
                                         <td>
                                             <div class="btn-group float-right">
                                                 {% if model.add_url %}
-                                                    <a href="{{ model.add_url }}" class="btn btn-xs {{ jazzmin_ui.button_classes.success }} addlink">{% trans 'Add' %}</a>
+                                                    <a href="{{ model.add_url }}" class="btn btn-xs  {{ jazzmin_ui.button_classes.success }} addlink">{% trans 'Add' %}</a>
                                                 {% endif %}
                                                 {% if model.url %}
                                                     {% if model.view_only %}
@@ -79,16 +79,39 @@
 
  
 
-    <!-- Sección de Analytics -->
-    <h2 class="mt-5 text-center">Analytics</h2>
+    <!-- Sección de Estadísticas -->
+    <h2 class="mt-5 text-center">Estadísticas</h2>
     <div class="row align-items-center mt-5">
-        <div class="col-md-6 text-center">
-            <p  style="text-align: justify; font-size: 1.5em; color: #C48288; margin-bottom: 50px; font-weight: bold;">
-                Te invitamos a descubrir la sección de Analytics, donde podrás visualizar análisis gráficos detallados
-                que transforman los datos de las fundaciones en insights claros. Navega por nuestras diversas
-                visualizaciones para obtener una comprensión más profunda y efectiva de las tendencias y
-                métricas clave. ¡Explora ahora y toma decisiones informadas con mayor confianza!</p>
-        </div>
+        {% if request.user.is_superuser %}
+            <div class="col-md-6 text-center">
+                <p class="text-justify font-bold text-lg text-pink-400">
+                    En esta sección se presentan análisis gráficos detallados sobre varios aspectos, incluyendo:
+                </p>
+                <ul class="text-justify font-bold text-lg text-pink-400">
+                    <li>El nivel educativo</li>
+                    <li>La presencia de hijos</li>
+                    <li>La documentación faltante</li>
+                    <li>El progreso en el libro</li>
+                </ul>
+                <p class="text-justify font-bold text-lg text-pink-400">
+                    Estos análisis son generados a partir de la información proporcionada por las fundaciones.
+                </p>
+            </div>
+        {% else %}
+            <div class="col-md-6 text-center">
+                <p class="text-justify font-bold text-lg text-pink-400">
+                    Te invitamos a descubrir la sección de “estadísticas”, donde podrás visualizar los análisis gráficos detallados sobre las adolescentes de las fundaciones registradas.
+                    La información que se visualiza en esta sección es la siguiente:
+                </p>
+                <ul class="text-justify font-bold text-lg text-pink-400">
+                    <li>El nivel educativo</li>
+                    <li>La presencia de hijos</li>
+                    <li>La documentación faltante</li>
+                    <li>El progreso en el libro</li>
+                </ul>
+            </div>
+        {% endif %}
+    
         <div class="col-md-6 text-center">
 
             <div class="atropos my-atropos">
@@ -100,8 +123,8 @@
                     <div class="atropos-inner">
                       <!-- put your custom content here -->
                         <a href="{% url 'lista_fundaciones' %}" target="_blank">
-                        <img src="{% static 'img/analytics.png' %}" alt="Analytics" class="img-fluid" data-atropos-offset="5">
-                        <p>Ver Analytics</p>
+                        <img src="{% static 'img/analytics.png' %}" alt="Estadísticas" class="img-fluid" data-atropos-offset="5">
+                        <p>Ver Estadísticas</p>
                     </a>
                     </div>
                   </div>
@@ -207,6 +230,7 @@
                 shadowScale: 0.5,
             });
         });
+        
     </script>
   
 
