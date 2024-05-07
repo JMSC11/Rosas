@@ -1,0 +1,167 @@
+{% load static i18n jazzmin django_extras %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Analytics</title>
+    <link rel="stylesheet" href="{% static 'css/atropos.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+</head>
+
+<body class="font-sans leading-normal tracking-normal">
+
+    <div class="flex flex-col md:flex-row">
+
+        <div class="main-content flex-1 bg-gray-100 pb-24 md:pb-5">
+
+            <div class="bg-[#273a68] to-gray-800 p-4 shadow text-2xl text-white">
+                <h3 class="font-bold pl-2">Analytics</h3>
+            </div>
+
+            <div class="flex flex-row flex-wrap flex-grow mt-2">
+                <div class="container mx-auto px-4 py-8">
+                    <h2 class="text-3xl font-bold text-center my-8 w-full">Detalles de la categoría: {{ nombre_categoria }}</h2>
+                    <ol>
+                        {% for curso in cursos %}
+                        <h3 class="text-xl font-bold">{{ curso.curso }}</h3>
+                        <p>{{ curso.descripcion }}</p>
+                        <li class="flex flex-row">
+                            <!-- División izquierda para la gráfica -->
+                            <div class="w-1/2 mt-5 ">
+                                <p>Adolescentes Inscritos: {{ curso.adolescentes_inscritos }}</p>
+                                {% if curso.adolescentes_inscritos > 0 %}
+                                <div class="mb-5 mt-5">
+                                    <h4>Adolescentes por Fundación:</h4>
+                                    <canvas id="pieChart-{{ curso.id }}" style="max-width: 400px; max-height: 400px;" class="mb-3 mt-5"></canvas>
+                                </div>
+                                {% else %}
+                                <div class="mb-5 mt-5">
+                                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
+                                        <p class="font-bold">Información</p>
+                                        <p>No hay adolescentes inscritos en este curso actualmente.</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <!-- División derecha para contenido adicional -->
+                            <div class="w-1/2 mt-5 ">
+                                <p>Adolescentes Inscritos: {{ curso.adolescentes_inscritos }}</p>
+                                {% if curso.adolescentes_inscritos > 0 %}
+                                <div class="mb-5 mt-5">
+                                    <h4>Adolescentes Destacadas por Fundación:</h4>
+                                    <ul class="pl-5">
+                                        {% for ad in adolescentes_destacados|get_item:curso.id %}
+                                        <li class="flex items-center bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-2 shadow-sm">
+                                            <i class="fas fa-trophy text-yellow-400 mr-2"></i> {{ ad.nombre_completo }} - {{ ad.fundacion }}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    
+                                                                     
+                                </div>
+                                {% else %}
+                                <div class="mb-5 mt-5">
+                                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
+                                        <p class="font-bold">Información</p>
+                                        <p>No hay adolescentes inscritos en este curso actualmente.</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </li>
+                        {% endfor %}
+                        
+                    </ol>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        // Asegúrate de que el objeto global para las gráficas existe
+        window.myCharts = window.myCharts || {};
+    
+        // Función para generar un color RGB aleatorio
+        function generateRandomColor() {
+            var r = Math.floor(Math.random() * 256); // Rojo: 0-255
+            var g = Math.floor(Math.random() * 256); // Verde: 0-255
+            var b = Math.floor(Math.random() * 256); // Azul: 0-255
+            return `rgba(${r}, ${g}, ${b}`;
+        }
+    
+        // Función para obtener colores únicos
+        function getUniqueColors(count) {
+            const colors = new Set();
+            while (colors.size < count) {
+                colors.add(generateRandomColor());
+            }
+            return [...colors];
+        }
+    
+        {% for curso in cursos %}
+        // Solo ejecutar el código de la gráfica si hay adolescentes inscritos
+        {% if curso.adolescentes_inscritos > 0 %}
+        (function() {
+            const backgroundColors = getUniqueColors(6).map(color => `${color}, 0.2)`);
+    
+            var ctx = document.getElementById('pieChart-{{ curso.id }}').getContext('2d');
+            var data = {
+                labels: [
+                    {% for fundacion in detalle_adolescentes_por_fundacion|get_item:curso.id %}
+                    "{{ fundacion.fundacion__nombre_fundacion }}",
+                    {% endfor %}
+                ],
+                datasets: [{
+                    data: [
+                        {% for fundacion in detalle_adolescentes_por_fundacion|get_item:curso.id %}
+                        {{ fundacion.cantidad }},
+                        {% endfor %}
+                    ],
+                    backgroundColor: backgroundColors,
+                    
+                    borderWidth: 0
+                }]
+            };
+    
+            // Destruir gráfica anterior si existe
+            if (window.myCharts['chart-{{ curso.id }}']) {
+                window.myCharts['chart-{{ curso.id }}'].destroy();
+            }
+    
+            // Crear nueva gráfica
+            window.myCharts['chart-{{ curso.id }}'] = new Chart(ctx, {
+                type: 'pie',
+                data: data,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+        })();
+        {% endif %}
+        {% endfor %}
+    </script>
+    
+    
+    
+        
+            
+</body>
+
+</html>

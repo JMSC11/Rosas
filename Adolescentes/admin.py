@@ -20,6 +20,8 @@ class ProgresoInline(admin.StackedInline):
     extra = 0
 
 class AdolescenteAdminForm(forms.ModelForm):
+
+    
     class Meta:
         model = Adolescente
         fields = '__all__'

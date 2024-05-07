@@ -19,11 +19,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LogoutView
-from fundaciones.views import ListaFundaciones, DetalleFundacion
+from fundaciones.views import ListaFundaciones, DetalleFundacion, DetalleCursoView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('lista-fundaciones/', ListaFundaciones.as_view(), name='lista_fundaciones'),
     path('detalle-fundacion/<int:id>/', DetalleFundacion.as_view(), name='detalle-fundacion'),
+    path('detalles-cursos/<int:pk>/', DetalleCursoView.as_view(), name='detalle-cursos')
 ]

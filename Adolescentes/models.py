@@ -42,6 +42,11 @@ class CursosInscrito(models.Model):
     adolescentes = models.ForeignKey(Adolescente, on_delete=models.CASCADE, blank=True, null=True)
     fecha_inscripcion = models.DateTimeField(auto_created=True)
     es_terminado = models.BooleanField(choices=TERMINADO, default=False)
+    es_destacado = models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return f'Alumno {self.adolescentes} inscrito en {self.cursos}'
 
 
 class Progreso(models.Model):
