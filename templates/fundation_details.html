@@ -33,22 +33,21 @@
                             <!-- Contenedor de la Imagen -->
                             <div class="w-full md:w-1/2 p-4">
                                 {% if detalle_fundacion.imagen %}
-                                    <img src="{{ detalle_fundacion.imagen.url }}" alt="Imagen de {{ detalle_fundacion.nombre_fundacion }}" class="rounded-lg shadow-lg mx-auto">
+                                    <img src="{{ detalle_fundacion.imagen.url }}" alt="Imagen de {{ detalle_fundacion.nombre_fundacion }}" class="mx-auto max-w-96 h-auto">
                                 {% else %}
-                                    <div class="text-center p-12 border border-gray-300 rounded-lg">
-                                        <p class="text-gray-700 text-sm">Sin imagen disponible</p>
+                                    <div class="text-center p-12">
+                                        <p class="text-blue-800 text-sm">Sin imagen disponible</p>
                                     </div>
                                 {% endif %}
                             </div>
 
                             <!-- Contenedor de la Descripción -->
                             <div class="w-full md:w-1/2 p-4">
-                                <div class="bg-white p-6 rounded-lg shadow-lg">
-                                    
+                                <div>
                                     {% if detalle_fundacion.descripcion %}
-                                        <p class="text-gray-600">{{ detalle_fundacion.descripcion }}</p>
+                                        <p class="text-justify text-3xl text-blue-800 leading-relaxed">{{ detalle_fundacion.descripcion }}</p>
                                     {% else %}
-                                        <p class="text-gray-500">No se ha proporcionado una descripción.</p>
+                                        <p class="text-blue-800 text-3xl">No se ha proporcionado una descripción.</p>
                                     {% endif %}
                                 </div>
                             </div>
