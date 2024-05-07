@@ -2,10 +2,10 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from .models import Fundacion
 from cursos.models import Categoria, Curso
-from Adolescentes.models import Adolescente, Progreso
+from Adolescentes.models import Adolescente, Progreso, CursosInscrito
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
-
+from django.db.models import Count
 
 class ListaFundaciones(ListView):
     model = Fundacion
@@ -80,3 +80,57 @@ class DetalleFundacion(DetailView):
             'adolescentes_derechos': self.object.adolescentes_derechos
         })
         return context
+
+
+class DetalleCursoView(DetailView):
+    model = Categoria
+    template_name = 'curso_details.html'
+    context_object_name = 'lista_cursos'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        categoria = self.object
+        cursos = Curso.objects.filter(categoria=categoria).annotate(
+            adolescentes_inscritos=Count('cursosinscrito__adolescentes', distinct=True),
+            adolescentes_por_fundacion=Count('cursosinscrito__adolescentes__fundacion', distinct=True)
+        )
+        context['cursos'] = cursos
+
+        # Añadiendo detalle de adolescentes por fundación para cada curso
+        detalle_adolescentes_por_fundacion = {}
+        adolescentes_destacados = {}
+        for curso in cursos:
+
+            # Obtener adolescentes por fundación
+            adolescentes_por_fundacion = Adolescente.objects.filter(
+                cursosinscrito__cursos=curso
+            ).values('fundacion__nombre_fundacion').annotate(
+                cantidad=Count('id')
+            ).order_by('fundacion__nombre_fundacion')
+            detalle_adolescentes_por_fundacion[curso.id] = list(adolescentes_por_fundacion)
+
+            # Obtener adolescentes destacados
+            destacados = CursosInscrito.objects.filter(
+                cursos=curso,
+                es_destacado=True
+            ).select_related('adolescentes').select_related('adolescentes__fundacion')
+
+            adolescentes_destacados[curso.id] = [
+                {
+                    'nombre_completo': f"{ad.adolescentes.nombres} {ad.adolescentes.apellido_paterno}",
+                    'fundacion': ad.adolescentes.fundacion.nombre_fundacion
+                }
+                for ad in destacados
+            ]
+
+        context['detalle_adolescentes_por_fundacion'] = detalle_adolescentes_por_fundacion
+        context['adolescentes_destacados'] = adolescentes_destacados
+        context['nombre_categoria'] = categoria.nombre_categoria
+
+        return context
+
+    
+    
+
+
+ 
