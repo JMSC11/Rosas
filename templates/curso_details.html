@@ -32,12 +32,12 @@
                         <div class=""></div>
                 <div class="container mx-auto px-6 py-8 bg-white shadow-lg rounded-lg ">
                     
-                    <h2 class="text-3xl font-bold text-center my-8 w-full">Detalles de la categoría: {{ nombre_categoria }}</h2>
+                    <h2 class="text-3xl font-bold text-center my-8 w-full text-blue-800">Detalles de la categoría: {{ nombre_categoria }}</h2>
                     <ol>
                         {% for curso in cursos %}
-                        <h3 class="text-xl font-bold text-center mt-8 text-[#273a68]">{{ curso.curso }}</h3>
-                        <p class="px-10 py-5">{{ curso.descripcion }}</p>
-                        <li class="flex flex-row">
+                        <h2 class=" font-bold text-center mt-16 text-[#273a68] text-3xl border-t-4 pt-5">{{ curso.curso }}</h2>
+                        <p class="px-10 py-5 text-lg">{{ curso.descripcion }}</p>
+                        <li class="flex flex-row ">
                             <!-- División izquierda para la gráfica -->
                             <div class="w-1/2 mt-5 shadow rounded-lg bg-[#E3E4F2] text-center">
                                 <p class="px-10 py-5 font-bold">Adolescentes Inscritos: {{ curso.adolescentes_inscritos }}</p>
@@ -73,6 +73,7 @@
                                 {% endif %}
                             </div>
                         </li>
+
                         {% endfor %}
                         
                     </ol>
