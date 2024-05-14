@@ -24,10 +24,11 @@ class AdolescenteAdminForm(forms.ModelForm):
     
     class Meta:
         model = Adolescente
-        fields = '__all__'
+        fields = ('__all__')
         widgets = {
-            'fundacion': forms.Select(attrs={'disabled': True}),
+            'fundacion': forms.Select(),
         }
+        
 
 @admin.register(Adolescente)
 class AdolescenteAdmin(admin.ModelAdmin):
@@ -58,7 +59,7 @@ class AdolescenteAdmin(admin.ModelAdmin):
         return form
 
     def get_readonly_fields(self, request, obj=None):
-        if obj:  # solo hacer fundacion readonly si el objeto ya existe
+        if obj:  
             return ('fundacion',)
         return ()
     def has_module_permission(self, request):

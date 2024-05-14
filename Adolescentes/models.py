@@ -35,7 +35,7 @@ class Adolescente(models.Model):
 
     def __str__(self):
         return f'{self.nombres} {self.apellido_paterno} {self.apellido_materno}'
-    
+        
 
 class CursosInscrito(models.Model):
     cursos = models.ForeignKey(Curso, on_delete=models.CASCADE, blank=True, null=True)

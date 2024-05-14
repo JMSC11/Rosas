@@ -6,7 +6,7 @@ from Adolescentes.models import Adolescente, Progreso, CursosInscrito
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.db.models import Count
-
+from django.core.paginator import Paginator
 class ListaFundaciones(ListView):
     model = Fundacion
     template_name = 'list_analytics.html'

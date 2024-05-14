@@ -1,0 +1,81 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #20232A;
+    color: #FFFFFF;
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #9DACFF;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #5762D5;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #7078da;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid #5762D5;
+}
+
+.btn-secondary:hover {
+    background-color: #5762D5;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px;
+    background-color: #252934;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+}
+
+.hero p {
+    font-size: 1.2em;
+    color: #BBBBBB;
+    margin-top: 10px;
+}
+
+.hero-buttons {
+    margin-top: 20px;
+}
