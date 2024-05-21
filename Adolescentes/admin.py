@@ -8,7 +8,7 @@ from django import forms
 # Register your models here.
 
 admin.site.unregister(Group)
-admin.site.unregister(User)
+#admin.site.unregister(User)
 class CursoInscritoInline(admin.TabularInline):
     model = CursosInscrito
     extra = 1
